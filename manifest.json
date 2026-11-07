@@ -1,0 +1,14 @@
+{
+    "kind": "marinara.personal-extension",
+    "version": 1,
+    "config": {
+        "name": "Image Prompt Regeneration",
+        "author": "https://github.com/Elo-Ven",
+        "version": "0.1.4",
+        "description": "Revise an Illustrator image prompt before regenerating its image.",
+        "runtime": "client",
+        "capabilities": ["full_page_access"],
+        "jsPath": "extension.js",
+        "cssPath": "extension.css"
+    }
+}

@@ -1,0 +1,79 @@
+.image-regen-guidance {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.image-regen-guidance > span {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: rgb(255 255 255 / 55%);
+}
+
+.image-regen-guidance > textarea {
+  width: 100%;
+  min-height: 4rem;
+  resize: vertical;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 0.375rem;
+  background: rgb(0 0 0 / 40%);
+  padding: 0.5rem 0.625rem;
+  color: rgb(255 255 255 / 85%);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  outline: none;
+}
+
+.image-regen-guidance > textarea:focus {
+  border-color: rgb(255 255 255 / 30%);
+}
+
+.image-regen-guidance > textarea::placeholder {
+  color: rgb(255 255 255 / 30%);
+}
+
+.image-regen-reset {
+  margin-left: 0.5rem;
+  border: 0;
+  background: transparent;
+  color: rgb(255 255 255 / 50%);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.image-regen-reset:hover {
+  color: rgb(255 255 255 / 85%);
+}
+
+.image-regen-action {
+  flex-shrink: 0;
+}
+
+.image-regen-action,
+.image-regen-native {
+  text-transform: capitalize;
+}
+
+.image-regen-footer {
+  flex-wrap: wrap;
+}
+
+.image-regen-action:disabled,
+.image-regen-reset:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.image-regen-status {
+  margin: 0;
+  min-height: 1rem;
+  color: rgb(255 255 255 / 55%);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+
+.image-regen-error {
+  color: #fb7185;
+}
+
