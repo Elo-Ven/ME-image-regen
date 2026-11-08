@@ -1,6 +1,8 @@
-# Image Prompt Regeneration
+# Marinara Image Regeneration
 
-Image Prompt Regeneration is an external extension for Marinara Engine. It adds AI prompt editing to Marinara's **Regenerate image** dialog, so you can describe a change to an existing illustration or selfie and generate another version of it. You can review the revised prompt before making an image, or revise the prompt and generate the image in one step.
+![Image Prompt Regeneration demo](screenshots/demo.gif)
+
+Image Prompt Regeneration is an external extension for [Marinara Engine](https://github.com/Pasta-Devs/Marinara-Engine). It adds AI prompt editing to Marinara's **Regenerate image** dialog, so you can describe a change to an existing illustration or selfie and generate another version of it. You can review the revised prompt before making an image, or revise the prompt and generate the image in one step.
 
 It works with Illustrator images in Roleplay and Game chats and selfies in Conversation chats. The image is still generated through Marinara's normal image workflow.
 
@@ -11,40 +13,37 @@ It works with Illustrator images in Roleplay and Game chats and selfies in Conve
 
 ## Install
 
-1. Build `image-regen.zip` using the commands below. Once a release is published, you can instead download the ZIP from [GitHub Releases](https://github.com/Elo-Ven/ME-image-regen/releases).
-2. In Marinara Engine's `.env`, set `ENABLE_EXTERNAL_EXTENSIONS=true` and restart Marinara if it is running.
-3. In Marinara, open **Settings → Advanced → Danger Zone** and enable **Allow third-party extension imports**.
-4. Open **Settings → Addons → External Extensions** and import the ZIP as an **Extension File**.
-5. Review the extension and its **Full page access** request, then choose **Review and Run**.
+Offstage is an **External Extension with full page access**, so Marinara asks you to unlock
+third-party extensions first.
 
-Full page access lets the extension add controls inside Marinara's existing dialog. Its prompt requests use Marinara's own APIs; it does not connect to ComfyUI directly.
+1. **Allow external extensions on the host.** Open the `.env` file in your Marinara folder
+   (on Windows usually `%LOCALAPPDATA%\Marinara-Engine\.env`) and set
+    ```
+    ENABLE_EXTERNAL_EXTENSIONS=true
+    ```
+    Add the line if it isn't there. Restart Marinara.
+2. **Allow imports in the app.** **Settings → Advanced → Danger Zone**, read the warning, turn on
+   **Allow third-party extension imports** and confirm **I Understand, Enable**.
+3. **Import.** Download `image-regen.zip` from
+   [Releases](../../releases) (don't unzip it). **Settings → Addons → External Extensions →
+   Import Extension File** and pick the zip.
+4. **Approve.** Image Prompt Regeneration appears disabled, marked _Needs approval · Full page access_. Press the
+   power icon on its row (**Review and run**) and confirm **Run Exact Code**.
 
 ## Use it
 
-1. Open an Illustrator image from a message or the chat Gallery, then choose **Regenerate image**. For Conversation chats, open a selfie instead.
+1. Open an Illustrator image from a message or the chat Gallery, then click **Regenerate image** icon.
 2. In **AI guidance**, describe the change you want. For example: `Keep the character and pose, but change the setting to a rainy street at night.` You can leave this blank to request a faithful alternate wording of the saved prompt.
 3. Choose what to do next:
 
     | Control               | What it does                                                                                                                               |
     | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
     | **Generate Prompt**   | Revises **Prompt** and **Negative prompt** without generating an image. Review or edit the fields, then use **Generate image** when ready. |
-    | **Generate**          | Revises both prompt fields, then starts Marinara's normal image generation.                                                                |
     | **Generate image**    | Uses the prompt fields currently shown in the dialog, without asking the prompt model to revise them.                                      |
+    | **Generate**          | Revises both prompt fields, then starts Marinara's normal image generation.                                                                |
     | **Reset to original** | Restores the saved value of the adjacent prompt field. Each field has its own reset button.                                                |
 
 The new gallery image saves the prompts submitted for that generation. If you open **Regenerate image** on the new image later, those prompts are its originals. **AI guidance** is temporary and is not saved with the image.
-
-## Supported images and limitations
-
-The extra controls appear for Roleplay and Game illustrations attached to messages, Conversation selfies attached to messages, and Conversation gallery images with a saved generation record. They do not appear for unrelated images or images the extension cannot identify. For older attached images without a complete saved generation record, the visible gallery prompt is used as the original **Prompt** and the original **Negative prompt** is empty.
-
-The extension uses the saved image request, relevant chat context, Illustrator or selfie instructions, and the selected image style to ask the chat's text Prompt Model for revised prompts. It reconstructs this context from data Marinara exposes, so its wording may differ from Marinara's internal Illustrator prompt writer. Marinara handles image generation and replacement.
-
-## Troubleshooting
-
-- **No extra controls:** Check that the extension is enabled and that you opened **Regenerate image** for one of the supported images above. A Marinara UI update may also require an extension update.
-- **Prompt generation fails:** Check that the Illustrator agent is installed and that the chat has an available text Prompt Model connection. The built-in local Prompt Model is supported. The error appears below **AI guidance**.
-- **Image generation fails:** Check Marinara's normal image generation settings. Image errors appear below **AI guidance** and through Marinara's notification.
 
 ## Build from source (optional)
 
@@ -59,6 +58,10 @@ Import `dist/image-regen.zip` as an **Extension File**, or `dist/package/` as an
 
 For contributors, `npm test` runs the automated tests. They cover the dialog and mocked Marinara APIs; a live Marinara installation is needed to check the actual import and UI.
 
-## Author
+## Uninstall
 
-[Elo-Ven](https://github.com/Elo-Ven).
+**Settings → External Extensions → Delete** on Image Prompt Regeneration.
+
+## License
+
+MIT
